@@ -1,0 +1,377 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"font",
+				"font-size"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "src/index.htm",
+			"settings":
+			{
+				"buffer_size": 5830,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/webstaff.css",
+			"settings":
+			{
+				"buffer_size": 2933,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "module.exports = function(grunt) {\n	\n	//var autoprefixer = require('autoprefixer');\n  	//require('load-grunt-tasks')(grunt);\n    \n    var working_dir, target_dir, static_files, prod_files;\n    var path = require('path');\n    working_dir = 'src';\n    target_dir = '';\n\n    prod_files = [];\n    static_files = [\n        /* ---- HTML Forms ---- */\n        {src: '**/*.htm', dest: target_dir },\n\n        /* ---- XSL Transforms ---- */\n        {src: '**/*.xsl', dest: target_dir + '/assets/xsl'},\n\n        /* ---- CSS Files ---- */\n        // {src: '**/*.css', dest: target_dir + '/assets/css'},\n\n        /* ---- JS Files ---- */\n        {src: '**/*.js', dest: target_dir + '/assets/js/vend'},\n        \n        /* ---- Image Files ---- */\n        {\n        	src: ['**/*.tif', '**/*.tiff', '**/*.gif', '**/*.jpg', '**/*.jpeg', '**/*.png', '**/*.ico', '**/*.bmp'], \n        	dest: target_dir + '/assets/img'\n        },\n\n        /* ---- Config XML File ---- */\n        {src: '**/*.xml', dest: target_dir }\n    ];\n    for (var idx = 0; idx < static_files.length; idx++) {\n        static_files[idx]['cwd'] = working_dir;\n    }\n\n\ngrunt.initConfig({\n	/* FTP Up some fun times */\n	'sftp-deploy': {\n		build: {\n    		auth: {\n    			host: 'dev.porcej.com',\n      			port: 22,\n      			authKey: 'porcej'\n    		},\n    		cache: false,\n    		src: '/www/webstaff/www',\n    		//dest: '/',\n    		dest: 'dev.porcej.com/webstaff',\n    		exclusions: ['/www/webstaff/www/**/.*'],\n    		serverSep: '/',\n    		concurrency: 4,\n    		progress: true\n		}\n	},\n\n	/* Lets autoprefix our CSS */\n	autoprefixer: {\n    	options: {\n        	//browsers: ['last 2 versions', 'ie 8', 'ie 9', '> 0.25%']\n        	browsers: '> 1%'\n    	},\n    	main: {\n        	expand: true,\n        	flatten: true,\n        	src: 'src/**/*.css',\n        	dest: target_dir + '/assets/css/'\n    	}\n	},\n\n    /* Sync HTML Files to local copy */\n    sync: {\n      main: {\n        files: static_files,\n        verbose: true // Display log messages when copying files\n      }\n    },\n    watch: {\n        sync : {\n			files: ['src/**/*', '!src/**/*.css'],\n            tasks: ['sync']\n        },\n        autoprefixer: {\n            files: ['src/**/*.css'],\n            tasks: ['autoprefixer']\n        },\n        cool: {\n        	files: ['src/**/*'],\n        	tasks: ['sftp-deploy']\n        }\n\n    }\n\n  });\n\n  grunt.loadNpmTasks('grunt-sftp-deploy');\n  grunt.loadNpmTasks('grunt-contrib-watch');\n  grunt.loadNpmTasks('grunt-autoprefixer');\n  grunt.loadNpmTasks('grunt-sync');\n  //grunt.loadNpmTasks('grunt-contrib-coffee');\n  //grunt.loadNpmTasks('grunt-contrib-sass');\n  grunt.registerTask('ftp', 'sftp-deploy');\n  grunt.registerTask('default', 'watch');\n  //grunt.registerTask('compileBare', ''\n};",
+			"file": "gruntfile.js",
+			"file_size": 2728,
+			"file_write_time": 130922798600000000,
+			"settings":
+			{
+				"buffer_size": 2725,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "LICENSE",
+			"settings":
+			{
+				"buffer_size": 1074,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "README.md",
+			"settings":
+			{
+				"buffer_size": 57,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/www/webstaff/package.json",
+		"/www/webstaff/sftpCache.json",
+		"/www/webstaff/src/webstaff.css",
+		"/www/webstaff/src/index.htm",
+		"/www/webstaff/gruntfile.js",
+		"/Users/porcej/Library/Caches/Cleanup At Startup/com.fetchsoftworks.Fetch/Fetch Temporary Folder/gad-admin-options.php",
+		"/Users/porcej/Downloads/install.sh",
+		"/Users/porcej/.bash_profile",
+		"/Users/porcej/unode.sh",
+		"/Users/porceh/.bash_profile",
+		"/Users/porcej/Google Drive/Work/AFD/Alex IT/dev/Inform Mobile/FD-15-09-2014/package.json",
+		"/Users/porcej/Desktop/R3sp0nsiv3W3bD3signWithHTML5AndCSS3SE/hello.py",
+		"/Users/porcej/Downloads/solarized 2/README.md",
+		"/Users/porcej/Library/Caches/Cleanup At Startup/com.fetchsoftworks.Fetch/Fetch Temporary Folder/quickstart.html",
+		"/Volumes/Untitled/iBook HD/Jo An's Stuff/Erica Prayers & Cards/Erica Card.01",
+		"/Users/porcej/Desktop/usb-sentry/sentry.py",
+		"/Users/porcej/Documents/link-tracker/TODO.txt",
+		"/Users/porcej/Documents/link-tracker/index.php"
+	],
+	"find":
+	{
+		"height": 26.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"hidden",
+			","
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"\\n"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "src/index.htm",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5830,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5400,
+								5400
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1775.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/webstaff.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2933,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "gruntfile.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2725,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								266,
+								266
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "LICENSE",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1074,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1072,
+								1072
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "README.md",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 57,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "webstaff.sublime-project",
+	"replace":
+	{
+		"height": 48.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
