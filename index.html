@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset=utf-8>
+		<meta name="viewport" content="width-device-width,initial-scale=1.0">
+		<link rel='icon' type='image/x-icon' href='./assets/img/logo.png'>
+		<link rel="apple-touch-icon" href="./assets/img/telestaff.png">
+		<title>Log in</title>
+		<link rel="stylesheet" media="screen" href='./assets/css/webstaff.css' type="text/css">
+	</head>
+	<body>
+		<div id="container">
+			<div class="page-head">
+				<a href="/"><img src="./assets/img/logo.png" alt"Webstaff" class="logo"></a>
+				<span class="title"> Log in </span>
+			</div>
+			<div class="main_content">
+				<form action="https://atl01.telestaff.net/servlet/ServletController" method="post" class="signin-form">
+					<span class="hidden">
+						<input type="hidden" name="j_accessCode" value="2121" >
+	 					<input type="hidden" name="device" value="stdbrowser" >
+	 					<input type="hidden" name="action" value="doLogin" >
+					</span>
+					<fieldset class="inputs">
+						<div class="input-container">
+							<div class="input-field">
+								<input autocapitalize="off" autocorrect="off" class="text-input" id="j_username" name="j_username" placeholder="Username" type="text" tabindex="1" accesskey="u" value>
+							</div>
+						</div>
+						<div class="input-container">
+							<div class="input-field">
+								<input class="text-input" id="j_password" name="j_password" placeholder="Password" type="password" tabindex="1" accesskey="p" value>
+							</div>
+						</div>
+					</fieldset>
+					<div class="signin-button">
+						<button class="signin button yellow" id="signinbutton" type="submit"> Log in </button>
+					</div>
+					<div class="signin-button">
+						<button class="signin button blue" id="signinbutton" type="submit">  * Try Web Access 3 *  </button>
+					</div>
+					<div id="auto-login" class="linklist hidden-child">
+						<label>Automatic login</label><input type="checkbox" id="autologin">
+					</div>
+				</form>
+	<script>
+
+function getStorage() {
+	var storage = window['localStorage'];
+	if (window['localStorage']) {
+		document.querySelector('#auto-login').classList.remove("hidden-child");
+	} else {
+		return;
+	}
+	if (storage.getItem('user')) {
+		document.querySelector('#j_username').value = storage.getItem('user');
+	}
+	if (storage.getItem('auth')) {
+		document.querySelector('#j_password').value = storage.getItem('auth');
+	}
+    var autologin = storage.getItem('auto') === "true" ? true : false;
+	if (storage.getItem('auto')) {
+		document.querySelector('#autologin').checked = autologin;
+	}
+	if (autologin && storage.getItem('user') && storage.getItem('auth') ) {
+		setTimeout(function(){
+			if ((storage.getItem('user') === document.querySelector('#j_username').value)
+					&& (storage.getItem('auth') === document.querySelector('#j_password').value)
+               		&& document.querySelector('#autologin').checked) {
+						document.querySelector('form.signin-form').submit();
+			}
+    	}, 2000);
+	}  
+}
+getStorage();
+
+
+addEvent(document.querySelector('#j_username'), 'keyup', function () {
+  localStorage.setItem('user', this.value);
+});
+
+addEvent(document.querySelector('#j_password'), 'keyup', function () {
+  localStorage.setItem('auth', this.value);
+});
+
+addEvent(document.querySelector('#autologin'), 'change', function() {
+	localStorage.setItem('auto', this.checked);
+});
+
+addEvent(document.querySelector('#auto-login>label'), 'click', function() {
+	document.querySelector('#autologin').click();
+});
+
+addEvent(document.querySelector('#auto-login>label'), 'tap', function() {
+	document.querySelector('#autologin').click();
+});
+
+function addEvent(to, type, fn){
+    if(document.addEventListener){
+        to.addEventListener(type, fn, false);
+    } else if(document.attachEvent){
+        to.attachEvent('on'+type, fn);
+    } else {
+        to['on'+type] = fn;
+    }  
+};
+
+</script>
+			</div>
+			<div class="footer">
+				<div class="linklist">
+					<a href="https://alexnet.alexandriava.gov"> Alexnet </a>
+				</div>
+				<div class="linklist">
+					<a href="https://portal.microsoftonline.com"> City email </a>
+				</div>
+				<div class="linklist">
+					<a href="https://targetsolutions.com/alexandriava"> Target solutions </a>
+				</div>
+				<div class="linklist">
+					<a href="https://alexandriava1.sharepoint.com/sites/fire/Pages/Home.aspx"> AFD sharepoint </a>
+				</div>
+				<div class="linklist">
+					<a href="https://covkc.virginia.gov/vdfp/fst/Kview/CustomCodeBehind/Customization/Login/COV_Login.aspx"> VDFP knowledge center </a>
+				</div>
+				<div class="linklist">
+					<a href="http://www.vdh.virginia.gov/oems/"> OEMS </a>
+				</div>
+				<div class="linklist">
+					<a href="http://vdfp.virginia.gov/"> VDFP </a>
+				</div>
+				<div class="linklist">
+					<a href="https://cdp.dhs.gov/"> FEMA CFDP </a>
+				</div>
+				<div class="linklist">
+					<a href="http://www.ctosnnsa.org/pages/courses_web_campus.htm"> CTOS </a>
+				</div>
+				<div class="linklist">
+					<a href="http://sertc.org/"> SERTC </a>
+				</div>
+				<div class="linklist">
+					<a href="http://www.statter911.com/"> Statter 911 </a>
+				</div>
+				<div class="linklist">
+					<a href="http://www.fireengineering.com/index.html"> Fire Engineering </a>
+				</div>
+				<div class="linklist">
+					<a href="http://www.nist.gov/fire/"> NIST </a>
+				</div>
+				<div class="linklist">
+				<a href="http://newscience.ul.com/firesafety"> UL </a>
+				</div>
+			</div>
+		</div>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48782869-1', 'porcej.com');
+  ga('send', 'pageview');
+</script>
+	</body>
+</html>
