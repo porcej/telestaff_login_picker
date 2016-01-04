@@ -15,7 +15,7 @@
 				<span class="title"> Log in </span>
 			</div>
 			<div class="main_content">
-				<form action="https://atl01.telestaff.net/servlet/ServletController" method="post" class="signin-form">
+				<form action="https://atl01.telestaff.net/servlet/ServletController" method="post" class="signin-form" id="main_form">
 					<span class="hidden">
 						<input type="hidden" name="j_accessCode" value="2121" >
 	 					<input type="hidden" name="device" value="stdbrowser" >
@@ -70,7 +70,7 @@ function getStorage() {
 						document.querySelector('form.signin-form').submit();
 			}
     	}, 2000);
-	}  
+	}
 }
 getStorage();
 
@@ -102,8 +102,30 @@ function addEvent(to, type, fn){
         to.attachEvent('on'+type, fn);
     } else {
         to['on'+type] = fn;
-    }  
+    }
 };
+
+document.addEventListener('DOMContentLoaded', function () {
+    var request = new XMLHttpRequest();
+      	request.open('GET', 'http://webstaff.porcej.com/web/availableServers/', true);
+	request.onload = function (e) {
+		if (request.readyState === 4) {
+         		// Check if the get was successful.
+			if (request.status === 200) {
+              			document.getElementById("availableServers").innerHTML = request.responseText;
+              		var e = document.getElementById("availableServers");
+              		document.getElementById('main_form').action = e.options[e.selectedIndex].value;
+          		} else {
+				console.log("Failed to load available servers using default host.");
+          		}
+      		}
+  	};
+  	// Catch errors:
+  	request.onerror = function (e) {
+		console.log("Failed to load available servers using default host.");
+  	};
+  	request.send(null);
+});
 
 </script>
 			</div>
@@ -161,5 +183,6 @@ function addEvent(to, type, fn){
   ga('create', 'UA-48782869-1', 'porcej.com');
   ga('send', 'pageview');
 </script>
+		<select id="availableServers" class="hidden" style="display:none"></select>
 	</body>
 </html>
